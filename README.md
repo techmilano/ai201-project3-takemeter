@@ -428,6 +428,9 @@ All AI-generated suggestions were reviewed before being included in the final pr
 .
 ├── README.md
 ├── planning.md
+├── app.py
+├── requirements.txt
+├── ai201_project3_takemeter_starter_clean.ipynb
 ├── data/
 │   └── takemeter_ucf_labeled.csv
 ├── prompts/
@@ -438,6 +441,40 @@ All AI-generated suggestions were reviewed before being included in the final pr
 └── sample_outputs/
     └── sample_classifications.md
 ```
+
+## Deployed Interface (Bonus Option 2)
+
+A simple Gradio interface accepts a new UCF post, runs it through the fine-tuned
+classifier, and displays the predicted label along with the confidence for every label.
+
+The interface code lives in two places:
+
+- **In the notebook** (`ai201_project3_takemeter_starter_clean.ipynb`) — the final
+  cells install Gradio, save the fine-tuned model to `./takemeter_model`, and launch
+  the interface. Running the notebook top to bottom and then those cells produces a
+  shareable public link in Colab (`demo.launch(share=True)`), so the app can be tried
+  in a browser without any local setup.
+- **As `app.py`** — the same interface as a standalone script for running outside Colab.
+
+### Run the interface in Colab
+
+1. Run the notebook through the fine-tuning and evaluation sections.
+2. Run the three **Bonus (Option 2)** cells at the end of the notebook.
+3. Open the public `gradio.live` link printed by the last cell and paste in a UCF post.
+
+### Run `app.py` locally
+
+1. Save the fine-tuned model from the notebook (the bonus cell writes it to
+   `./takemeter_model`) and download that folder into the repo root.
+2. Install dependencies and launch:
+
+```bash
+pip install -r requirements.txt
+python app.py
+```
+
+The app reads its labels from the saved model config, so it stays in sync with the
+training `label_map`.
 
 ## How to Run
 
